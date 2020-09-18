@@ -65,6 +65,47 @@ function removeLocation(evt) {
   }
 }
 
+function ConvertIconName(icon){
+  switch(icon){
+    case "01d":
+      return "clear-day";
+      case "02d":
+      return "partly-cloudy-day";
+      case "03d":
+      return "cloudy";
+      case "04d":
+      return "cloudy";
+      case "09d":
+      return "rain";
+      case "10d":
+      return "rain";
+      case "11d":
+      return "thunderstorm";
+      case "13d":
+      return "sleet";
+      case "50d":
+      return "fog";
+      case "01n":
+      return "clear-night";
+      case "02n":
+      return "partly-cloudy-nigh";
+      case "03n":
+      return "cloudy";
+      case "04n":
+      return "cloudy";
+      case "09n":
+      return "rain";
+      case "10n":
+      return "rain";
+      case "11n":
+      return "thunderstorm";
+      case "13n":
+      return "sleet";
+      case "50n":
+      return "fog";
+  }
+}
+
 /**
  * Renders the forecast data into the card element.
  *
@@ -96,7 +137,7 @@ function renderForecast(card, data) {
       .toFormat('DDDD t');
   card.querySelector('.date').textContent = forecastFrom;
   card.querySelector('.current .icon')
-      .className = `icon ${data.current.weather[0].icon}`;
+      .className = `icon ${ConvertIconName(data.current.weather[0].icon)}`;
   card.querySelector('.current .temperature .value')
       .textContent = Math.round(data.current.temp);
   card.querySelector('.current .humidity .value')
@@ -125,7 +166,7 @@ function renderForecast(card, data) {
         .setZone(data.timezone)
         .toFormat('ccc');
     tile.querySelector('.date').textContent = forecastFor;
-    tile.querySelector('.icon').className = `icon ${forecast.weather[0].icon}`;
+    tile.querySelector('.icon').className = `icon ${ConvertIconName(forecast.weather[0].icon)}`;
     tile.querySelector('.temp-high .value')
         .textContent = Math.round(forecast.temp.max);
     tile.querySelector('.temp-low .value')
